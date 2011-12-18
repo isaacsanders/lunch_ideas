@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Lunch Ideas</title>
+    <script src="/javascript/jquery.js"></script>
+    <script src="/javascript/handlebars.js"></script>
+    <script src="/javascript/underscore.js"></script>
+    <script src="/javascript/backbone.js"></script>
+    <script src="/javascript/date.js"></script>
+    <script src="/javascript/models/idea.js"></script>
+    <script src="/javascript/app.js"></script>
+    <script type="text/x-handlebars-template", id='idea-template'>
+      <h3>
+        <input type='text' name='name' readonly=true value={{name}}></input>
+      </h3>
+      <label for='cuisine'>Cuisine: </label>
+      <input type='text' name='cuisine' readonly=true value={{cuisine}}></input>
+      <div id='upvote'>
+        <button class='undecided'>
+          {{popularity}} votes
+        </button>
+      </div>
+    </script>
+    <script type="text/x-handlebars-template", id='ideas-template'>
+      {{#each models}}
+        <li id={{this.id}}></li>
+      {{/each}}
+      <li class="new">
+      <label for="name">Name: </label>
+      <input name="name" type="text">
+      <label for="cuisine">Cuisine: </label>
+      <input name="cuisine" type="text">
+      </li>
+    </script>
+  </head>
+  <body>
+    <ul class='app'></ul>
+  </body>
+</html>
