@@ -2,22 +2,25 @@
   Backbone.emulateJSON = true;
   window.LunchIdeasApp = Backbone.Router.extend({
     routes: {
-      '/': '_index'
+      '.*': 'blargh'
     },
-    _index: function() {
-      return this.ideasView.render();
+    blargh: function() {
+      return console.log('This might be something I need to work...');
     }
   });
   $(document).ready(function() {
     window.App = new LunchIdeasApp;
     window.App.ideas = new Ideas;
-    window.App.ideasView = new IdeasView({
-      collection: window.App.ideas
+    return window.App.ideas.fetch({
+      success: function(col, res) {
+        window.App.ideasView = new IdeasView({
+          model: window.App.ideas
+        });
+        window.App.ideasView.render();
+        return Backbone.history.start({
+          pushState: true
+        });
+      }
     });
-    Backbone.history.start({
-      pushState: true,
-      root: '/index.html'
-    });
-    return window.App.navigate('/', true);
   });
 }).call(this);

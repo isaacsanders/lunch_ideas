@@ -8,28 +8,29 @@
     <script src="/javascript/date.js"></script>
     <script src="/javascript/models/idea.js"></script>
     <script src="/javascript/app.js"></script>
-    <script type="text/x-handlebars-template", id='idea-template'>
-      <h3>
-        <input type='text' name='name' readonly=true value={{name}}></input>
-      </h3>
-      <label for='cuisine'>Cuisine: </label>
-      <input type='text' name='cuisine' readonly=true value={{cuisine}}></input>
-      <div id='upvote'>
-        <button class='undecided'>
-          {{popularity}} votes
-        </button>
-      </div>
-    </script>
     <script type="text/x-handlebars-template", id='ideas-template'>
-      {{#each models}}
-        <li id={{this.id}}></li>
-      {{/each}}
-      <li class="new">
-      <label for="name">Name: </label>
-      <input name="name" type="text">
-      <label for="cuisine">Cuisine: </label>
-      <input name="cuisine" type="text">
-      </li>
+        {{#each ideas}}
+          <li id={{this.id}}>
+            <h3>
+              <input type='text' name='name' readonly=true value={{this.name}}></input>
+            </h3>
+            <label for='cuisine'>Cuisine: </label>
+            <input type='text' name='cuisine' readonly=true value={{this.cuisine}}></input>
+            <div id='upvote'>
+              <button class='undecided'>
+                {{this.popularity}} votes
+              </button>
+            </div>
+            <div id='update'>
+            </div>
+          </li>
+        {{/each}}
+      /* <li class="new"> */
+      /*   <label for="name">Name: </label> */
+      /*   <input name="name" type="text"> */
+      /*   <label for="cuisine">Cuisine: </label> */
+      /*   <input name="cuisine" type="text"> */
+      /* </li> */
     </script>
   </head>
   <body>

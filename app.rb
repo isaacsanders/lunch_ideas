@@ -27,16 +27,18 @@ class LunchIdeasApp < Sinatra::Application
   end
 
   post '/ideas' do
-    json = JSON.parse(params["model"])
-    pp json
+    case params["model"].class
+    when String
+      json = JSON.parse(params["model"])
+    when Hash
+      json = params["model"]
+    end
     idea = Idea.create(json)
-    p idea.save
     content_type :json
     "/ideas/#{idea.id}"
   end
 
   get '/ideas/:id' do
-    pp params
     idea = Idea.get(Integer(params[:id]))
     content_type :json
     idea.to_json

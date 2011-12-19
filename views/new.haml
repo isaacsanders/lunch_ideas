@@ -1,11 +1,11 @@
 %html
   %head
   %body
-    %form{:method => 'post', :action => '/ideas', :name => 'idea'}
-      %label{:for => 'idea[name]'} Name
-      %input{:name => 'idea[name]', :type => 'text'}
+    %form{:method => 'post', :action => '/ideas', :name => 'model'}
+      %label{:for => 'model[name]'} Name
+      %input{:name => 'model[name]', :type => 'text'}
       %br
-      %label{:for => 'idea[cuisine]'} Cuisine
-      %input{:name => 'idea[cuisine]', :type => 'text'}
+      %label{:for => 'model[cuisine]'} Cuisine
+      %input{:name => 'model[cuisine]', :type => 'text'}
       %br
       %input{:type => 'submit'}

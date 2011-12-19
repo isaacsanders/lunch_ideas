@@ -1,17 +1,20 @@
 Backbone.emulateJSON = true
 
 window.LunchIdeasApp = Backbone.Router.extend({
-  routes: {
-    '/': '_index'
+  routes:{
+    '.*': 'blargh'
   }
 
-  _index: ->
-    this.ideasView.render()
+  blargh: ->
+    console.log('This might be something I need to work...')
 })
 
 $(document).ready ->
   window.App = new LunchIdeasApp
   window.App.ideas = new Ideas
-  window.App.ideasView = new IdeasView({collection: window.App.ideas})
-  Backbone.history.start({pushState: true, root: '/index.html'})
-  window.App.navigate('/', true)
+  window.App.ideas.fetch({
+    success: (col, res)->
+      window.App.ideasView = new IdeasView({model: window.App.ideas})
+      window.App.ideasView.render()
+      Backbone.history.start({pushState: true})
+  })
